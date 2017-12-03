@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #ff9852;
+        display: grid;
+        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-rows: 10vh 40vh 10vh;
+        grid-template-areas: ".  . ."
+                             ". error ."
+                             ".  .  .";
+      }
+
+      .myarticle {
+        grid-area: error;
+        justify-self: center;
+      }
+
+      .myarticle h1 {
+        font-size: 3rem;
+        transform: rotate(10deg);
+      }
+    </style>
+  </head>
+  <body>
+    <article class="myarticle">
+      <h1>Ooops, 404 here.</h1>
+    </article>
+  </body>
+</html>
