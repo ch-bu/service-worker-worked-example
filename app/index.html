@@ -1,0 +1,33 @@
+<html>
+  <head>
+
+  <style>
+    body {
+      background-color: black;
+      display: grid;
+      grid-template-columns: 1fr 4fr 1fr;
+      grid-template-rows: 5vh auto 5vh;
+      grid-template-areas: ".  image ."
+                           ". image   .";
+    }
+
+    article {
+      grid-area: image;
+    }
+
+    article img {
+      width: 100%;
+    }
+
+  </style>
+  </head>
+
+  <body>
+    <article>
+      <img src="wonderful.jpg" alt="">
+    </article>
+
+
+    <script src="register-sw.js" charset="utf-8"></script>
+  </body>
+</html>
