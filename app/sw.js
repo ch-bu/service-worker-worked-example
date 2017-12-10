@@ -1,7 +1,7 @@
 // Examples of service worker implementations:
 // https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker
 
-var CACHE_NAME = "v7";
+// var CACHE_NAME = "v8";
 var urlsToCache = [
   '/wonderful.jpg',
   '/cat.jpg',
@@ -79,6 +79,8 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       // Returns a single promise after all promises
       // have been resolved.
+      // Actually we do not need this call here because we do not
+      // provide Promises.all with promises.
       return Promise.all(
         // Get all caches which are not the current cache
         cacheNames.filter(function(cacheName) {
