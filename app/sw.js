@@ -1,7 +1,7 @@
 // Examples of service worker implementations:
 // https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker
 
-var CACHE_NAME = "v3";
+var CACHE_NAME = "v7";
 var urlsToCache = [
   '/wonderful.jpg',
   '/cat.jpg',
@@ -43,7 +43,7 @@ self.addEventListener('fetch', function(event) {
 
             // If we haven't fetched this request yet,
             // store it in the cache
-            return caches.open('v3')
+            return caches.open(CACHE_NAME)
               .then(function(cache) {
                 return fetch(event.request)
                   .then(function(response) {
@@ -63,5 +63,31 @@ self.addEventListener('fetch', function(event) {
 
 
 self.addEventListener('activate', function(event) {
-  console.log("activatdedd");
+  // The activation event fires whenever a new service
+  // worker is installed. The new service worker
+  // is first installed than activated. As long as
+  // there are any pages still loading the worker is
+  // in waiting status.
+  // The activation event is a good place to
+  // remove old unneeded service workers!
+
+  // Remove old caches
+  // The wait until event stops the activation process until some
+  // work has been done. Here: The deletion of old caches. It
+  // takes a promise as an argument.
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      // Returns a single promise after all promises
+      // have been resolved.
+      return Promise.all(
+        // Get all caches which are not the current cache
+        cacheNames.filter(function(cacheName) {
+          return cacheName.startsWith('v') && cacheName != CACHE_NAME;
+        // Remove all old caches
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
 });
