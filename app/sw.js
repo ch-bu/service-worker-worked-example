@@ -1,7 +1,7 @@
 // Examples of service worker implementations:
 // https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker
 
-// var CACHE_NAME = "v8";
+var CACHE_NAME = "v8";
 var urlsToCache = [
   '/wonderful.jpg',
   '/cat.jpg',
